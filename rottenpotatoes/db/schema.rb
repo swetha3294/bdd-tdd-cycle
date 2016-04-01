@@ -11,9 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160401054113) do
+ActiveRecord::Schema.define(:version => 20160401061338) do
 
-# Could not dump table "movies" because of following StandardError
-#   Unknown type 'movie' for column 'director'
+  create_table "movies", :force => true do |t|
+    t.string   "title"
+    t.string   "rating"
+    t.text     "description"
+    t.datetime "release_date"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "director"
+  end
 
 end
