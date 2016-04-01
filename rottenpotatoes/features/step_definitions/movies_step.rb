@@ -4,6 +4,6 @@ Given /the following movies exist/ do |movies_table|
     end
 end 
 Then /the director of "(.*)" should be "(.*)"/ do |title, director|
-   @movie = Movie.find_by_title title
-   @movie.director=director
+   page.should have_content(title)
+   page.should have_content(director)
 end

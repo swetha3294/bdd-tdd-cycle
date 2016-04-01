@@ -4,9 +4,20 @@ class MoviesController < ApplicationController
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
+     
   end
-
+  def director_sames
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    if @movie.director ==nil || @movie.director.empty?
+      flash[:warning] = "'#{@movie.title}' has no director info"
+      redirect_to '/movies'
+    end
+    @similar_list = Movie.find_all_by_director(@movie.director)
+    
+  end
   def index
+   
     sort = params[:sort] || session[:sort]
     case sort
     when 'title'
@@ -14,6 +25,7 @@ class MoviesController < ApplicationController
     when 'release_date'
       ordering,@date_header = {:order => :release_date}, 'hilite'
     end
+    
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
     
@@ -48,6 +60,8 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find params[:id]
+     
+    
   end
 
   def update

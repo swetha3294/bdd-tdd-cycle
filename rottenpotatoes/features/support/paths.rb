@@ -14,11 +14,23 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
-
+      movies_path
+      
     when /^the edit page for "(.*)"$/ then
        movie = Movie.find_by_title $1
        edit_movie_path movie
+    
+    when /^the details page for "(.*)"$/ then
+       movie = Movie.find_by_title $1
+       movie_path movie
+       
+     when /^the Similar Movies page for "(.*)"$/ then
+       movie = Movie.find_by_title $1
+       director_sames_path movie   
+    
+   
+    
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
