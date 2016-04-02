@@ -26,7 +26,7 @@ module NavigationHelpers
        
      when /^the Similar Movies page for "(.*)"$/ then
        movie = Movie.find_by_title $1
-       director_sames_path movie   
+       same_director_path movie   
     
    
     

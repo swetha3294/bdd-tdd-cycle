@@ -6,7 +6,8 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
      
   end
-  def director_sames
+  
+  def same_director
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
     if @movie.director ==nil || @movie.director.empty?
